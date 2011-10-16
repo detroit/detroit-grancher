@@ -1,30 +1,35 @@
---- 
-spec_version: 1.0.0
-replaces: []
-
-loadpath: 
-- lib
-name: detroit-grancher
-repositories: {}
-
+---
+authors:
+- name: T. Sawyer
+  email: transfire@gmail.com
+copyrights:
+- holder: Thomas Sawyer
+  year: '2011'
+  license: GPL-3
+replacements: []
 conflicts: []
-
-engine_check: []
-
-title: Detroit Grancher
-contact: trans <transfire@gmail.com>
-resources: 
-  code: http://github.com/detroit/detroit-grancher
+requirements:
+- name: detroit
+- name: grancher
+dependencies: []
+repositories: []
+resources:
   home: http://detroit.github.com/
-maintainers: []
-
-requires: []
-
-version: 0.0.1
-licenses: []
-
-copyright: (c) 2011 Thomas Sawyer
-authors: 
-- Thomas Sawyer
-description: Grancher plugin for Detroit build system.
-summary: Grancher plugin for Detroit build system.
+  code: http://github.com/detroit/detroit-grancher
+  mail: http://groups.google.com/rubyworks-mailinglist
+load_path:
+- lib
+extra: {}
+source:
+- Profile
+alternatives: []
+revision: 0
+name: detroit-grancher
+title: Detroit Grancher
+version: 0.1.0
+summary: Grancher plugin for Detroit
+description: Grancher plugin for Detroit build system uses the grancher gem to copy
+  a project's website directory to github gh-pages branch and push it the github.com
+  during the publish phase. While quite usable, this plugin has been superceded by
+  the github gem for most use cases.
+date: '2011-10-16'
