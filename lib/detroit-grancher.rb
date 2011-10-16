@@ -1,3 +1,5 @@
+require 'detroit/tool'
+
 module Detroit
 
   # Convenicene method for creating a new Grancher tool instance.
