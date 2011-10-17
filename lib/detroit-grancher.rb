@@ -149,6 +149,12 @@ module Detroit
       sm
     end
 
+  public
+
+    def self.man_page
+      File.dirname(__FILE__)+'/../man/detroit-grancher.5'
+    end
+
   end
 
 end

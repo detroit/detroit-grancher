@@ -1,0 +1,71 @@
+detroit-grancher(5) - publish website via dedicated git branch
+==============================================================
+
+## DESCRIPTION
+
+The Grancher tool utilizes the Grancher library to publish a
+project's website via a dedicated git branch. Typically this
+is the `gh-pages` branch.
+
+Note that his plug-in has been generally superseded by the
+`github` plug-in.
+
+## OPTIONS
+
+The following options can be used in Detroit assembly files
+for defining a github service.
+
+  * `remote` - The remote to use (defaults to 'origin').
+
+  * `branch` -  The branch into which to save the files.
+    Defaults to `gh-pages`.
+
+  * `keep` - List of any files/directory to not overwrite in branch.
+
+  * `keep_all` - Do not remove any files currently in the branch.
+
+  * `sitemap` - List of directories and files to transfer.
+    If a single directory entry is given then the contents
+    of that directory will be transferred. Defaults to `site`,
+    `website` or `doc`.
+
+## EXAMPLES
+
+If you keep your website in a project sub-directory called either
+`site`, `web`, `website` or `www`, and failing those, `doc` or `docs`,
+then the defaults settings are likely sufficient.
+
+    grancher:
+      active: true
+
+If the files to copy to the gh-pages branch are more entailed, use
+a mapping of source to destination. For example, if we want to copy
+all the files in `site/` to gh-pages, but also all the files in `doc/`
+to a directory called `doc` we could use:
+
+    grancher:
+      sitemap:
+        site: .
+        doc: doc
+
+However, this isn't usually necessary, since a soft link could be used
+instead.
+
+    $ ln -s doc site/doc
+
+You can check soft-links into with git and they will be transferred as
+if the real file when copied to the gh-pages file. So a more complex
+`sitemap` is really only needed when more specific selections or
+complex globs are needed.
+
+
+## COPYRIGHT
+
+Copyright (c) 2010 Thomas Sawyer, Rubyworks
+
+Detroit Grancher is distributable in accordance with the GPLv3 license.
+
+
+## SEE ALSO
+
+detroit(1), git(1), detroit-github(5)
