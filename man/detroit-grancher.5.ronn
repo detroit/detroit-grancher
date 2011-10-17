@@ -59,6 +59,15 @@ if the real file when copied to the gh-pages file. So a more complex
 complex globs are needed.
 
 
+## RESOURCES
+
+For more information:
+
+  * [API Documentation](http://rubydoc.info/gems/detroit-grancher)
+
+  * [Development Site](http://github.com/detroit/detroit-grancher)
+
+
 ## COPYRIGHT
 
 Copyright (c) 2010 Thomas Sawyer, Rubyworks
