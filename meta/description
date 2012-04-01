@@ -1,0 +1,1 @@
+Grancher plugin for Detroit build system uses the grancher gem to copy a project's website directory to github gh-pages branch and push it the github.com during the publish phase. While quite usable, this plugin has been superceded by the github gem for most use cases.
