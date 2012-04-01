@@ -23,10 +23,12 @@ extra: {}
 load_path:
 - lib
 revision: 0
+created: '2011-10-16'
 summary: Grancher plugin for Detroit
 title: Detroit Grancher
-version: 0.1.0
+version: 0.2.0
 name: detroit-grancher
+suite: detroit
 description: Grancher plugin for Detroit build system uses the grancher gem to copy
   a project's website directory to github gh-pages branch and push it the github.com
   during the publish phase. While quite usable, this plugin has been superceded by
