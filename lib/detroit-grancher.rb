@@ -58,14 +58,20 @@ module Detroit
 
     #  A S S E M B L Y  S T A T I O N S
 
-    # Attach pre-publish method to pre-publish assembly station.
-    def station_pre_publish
-      transfer
+    def assemble?(station, options={})
+      case station
+      when :pre_publish then true
+      when :publish     then true
+      end
     end
 
+    # Attach pre-publish method to pre-publish assembly station.
     # Attach publish method to publish assembly station.
-    def station_publish
-      publish
+    def assemble(station)
+      case station
+      when :pre_publish then transfer
+      when :publish     then publish
+      end
     end
 
 
