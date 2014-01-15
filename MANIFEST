@@ -1,9 +1,7 @@
 #!mast .ruby bin lib man qed test [A-Z]*.*
-.ruby
 lib/detroit-grancher.rb
 man/detroit-grancher.5
 man/detroit-grancher.5.html
 man/detroit-grancher.5.ronn
+README.md
 LICENSE.txt
-README.rdoc
-COPYING.rdoc

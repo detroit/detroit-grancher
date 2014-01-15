@@ -5,15 +5,15 @@ detroit-grancher(5) - publish website via dedicated git branch
 
 The Grancher tool utilizes the Grancher library to publish a
 project's website via a dedicated git branch. Typically this
-is the `gh-pages` branch.
+is used for the `gh-pages` branch.
 
-Note that his plug-in has been generally superseded by the
-`github` plug-in.
+**Note that his plugin has been generally superseded by the
+`github` plugin.**
 
 ## OPTIONS
 
-The following options can be used in Detroit assembly files
-for defining a github service.
+The following options can be used in Detroit toolchain files
+for defining a Grancher tool instance.
 
   * `remote` - The remote to use (defaults to 'origin').
 
@@ -70,9 +70,9 @@ For more information:
 
 ## COPYRIGHT
 
-Copyright (c) 2010 Thomas Sawyer, Rubyworks
+Copyright (c) 2010 Rubyworks
 
-Detroit Grancher is distributable in accordance with the GPLv3 license.
+Detroit Grancher is distributable in accordance with the GPL v3 license.
 
 
 ## SEE ALSO

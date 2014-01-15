@@ -1,24 +1,49 @@
-require 'detroit/tool'
+require 'detroit-standard'
 
 module Detroit
 
-  # Convenicene method for creating a new Grancher tool instance.
-  def Grancher(options={})
-    Grancher.new(options)
-  end
-
+  ##
+  # This tool copies designated files to a git branch. This is useful
+  # for dealing with situations like GitHub's gh-pages branch for hosting
+  # project websites (a poor design copied from the Git project itself).
+  #
   # IMPORTANT! Grancher Tool is being deprecated in favor of the new GitHub
   # tool. Grancher has issues with Ruby 1.9 (due to encoding problems
   # in Gash library) and show no signs of being fixes.
   #
-  # IMPORTANT! This toll only works with Ruby 1.8.x.
+  # The following stations of the standard toolchain are targeted:
   #
-  # This tool copies designated files to a git branch.
-  # This is useful for dealing with situations like GitHub's
-  # gh-pages branch for hosting project websites.[1]
+  # * :pre_publish
+  # * :publish
   #
-  # [1] A poor design copied from the Git project itself.
+  # @note This tool may only works with Ruby 1.8.x.
+  #
   class Grancher < Tool
+
+    # Works with the Standard assembly.
+    #
+    # Attach `transfer` method to `pre_publish` assembly station, and
+    # attach `publish` method to `publish` assembly station.
+    #
+    # @!parse
+    #   include Standard
+    #
+    assembly Standard
+
+    # Location of manpage for tool.
+    MANPAGE = File.dirname(__FILE__) + '/../man/detroit-grancher.5'
+
+    # Initialize defaults.
+    #
+    # @todo Does project provide the site directory?
+    #
+    # @return [void]
+    def prerequisite
+      @branch   ||= 'gh-pages'
+      @remote   ||= 'origin'
+      @sitemap  ||= default_sitemap
+      #@keep_all ||= trial?
+    end
 
     # The brach into which to save the files.
     attr_accessor :branch
@@ -55,28 +80,6 @@ module Detroit
       end
     end
 
-
-    #  A S S E M B L Y  S T A T I O N S
-
-    def assemble?(station, options={})
-      case station
-      when :pre_publish then true
-      when :publish     then true
-      end
-    end
-
-    # Attach pre-publish method to pre-publish assembly station.
-    # Attach publish method to publish assembly station.
-    def assemble(station)
-      case station
-      when :pre_publish then transfer
-      when :publish     then publish
-      end
-    end
-
-
-    #  S E R V I C E  M E T H O D S
-
     # Cached Grancter instance.
     def grancher
       @grancher ||= ::Grancher.new do |g|
@@ -110,9 +113,6 @@ module Detroit
       report "Tranferred site files to #{branch}."
     end
 
-    # Same as transfer.
-    alias_method :pre_publish, :transfer
-
     # Push files to remote.
     def publish
       require 'grancher'
@@ -120,20 +120,22 @@ module Detroit
       report "Pushed site files to #{remote}."
     end
 
-  private
-
-    # TODO: Does the POM Project provide the site directory?
-    def initialize_defaults
-      @branch   ||= 'gh-pages'
-      @remote   ||= 'origin'
-      @sitemap  ||= default_sitemap
-      #@keep_all ||= trial?
+    # This tool ties into the `pre_publish` and `publish` stations of the
+    # standard assembly.
+    #
+    # @return [Boolean,Symbol]
+    def assemble?(station, options={})
+      return :transfer if station == :pre_publish
+      return :publish  if station == :publish
+      return false
     end
+
+  private
 
     # Default sitemap includes the website directoy, if it exists.
     # Otherwise it looks for a `doc` or `docs` directory.
     #
-    # NOTE: We have loop over the contents of the site directory
+    # @note This has to loop over the contents of the website directory
     # in order to pick up symlinks b/c Grancher doesn't support them.
     def default_sitemap
       sm  = []
@@ -153,12 +155,6 @@ module Detroit
         end
       end
       sm
-    end
-
-  public
-
-    def self.man_page
-      File.dirname(__FILE__)+'/../man/detroit-grancher.5'
     end
 
   end
