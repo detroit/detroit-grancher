@@ -7,9 +7,9 @@ module Detroit
   # for dealing with situations like GitHub's gh-pages branch for hosting
   # project websites (a poor design copied from the Git project itself).
   #
-  # IMPORTANT! Grancher Tool is being deprecated in favor of the new GitHub
+  # IMPORTANT! Grancher tool is being deprecated in favor of the new GitHub
   # tool. Grancher has issues with Ruby 1.9 (due to encoding problems
-  # in Gash library) and show no signs of being fixes.
+  # in Gash library) that show no signs of being fixed.
   #
   # The following stations of the standard toolchain are targeted:
   #
